@@ -1,0 +1,16 @@
+groq
+cohere
+openai-whisper
+pyttsx3
+SpeechRecognition
+pyautogui
+selenium
+webdriver-manager
+python-dotenv
+googlesearch-python
+wikipedia
+pywhatkit
+psutil
+requests
+asyncio
+threading
