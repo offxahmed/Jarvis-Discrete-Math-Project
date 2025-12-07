@@ -4,8 +4,30 @@ import os
 
 load_dotenv()
 
+# Determine the directory where .env should be (e.g., project root)
+# This assumes model.py is in backend/ and .env is in the parent directory
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+ENV_PATH = os.path.join(BASE_DIR, '.env')
+load_dotenv(ENV_PATH)
+
+api_key = os.getenv("COHERE_API_KEY")
+
+# Check for missing or placeholder API key
+if not api_key or api_key.strip() == "your_cohere_api_key_here":
+    print("\n" + "!" * 80)
+    print("CRITICAL ERROR: Missing Cohere API Key!")
+    print(f"Please open the file: {ENV_PATH}")
+    print("And replace 'your_cohere_api_key_here' with your actual Cohere API key.")
+    print("You can get a free key from: https://dashboard.cohere.com/api-keys")
+    print("!" * 80 + "\n")
+    # Prevent crash by using a dummy key for now, but warned user.
+    # The API call will still fail 401 if we proceed, so best to exit or handle gracefully.
+    # We will let it fail later or we can raise a SystemExit here.
+    # Let's raise SystemExit to stop the loop clearly.
+    raise SystemExit("Exiting due to missing API configuration.")
+
 # Initialize Cohere client
-co = cohere.Client(os.getenv("COHERE_API_KEY"))
+co = cohere.Client(api_key)
 
 # Define decision categories
 FUNCTIONS = [

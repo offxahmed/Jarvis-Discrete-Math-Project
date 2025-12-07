@@ -4,6 +4,7 @@ import requests
 from bs4 import BeautifulSoup
 from dotenv import load_dotenv
 import os
+from datetime import datetime
 
 load_dotenv()
 

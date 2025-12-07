@@ -12,5 +12,5 @@ wikipedia
 pywhatkit
 psutil
 requests
-asyncio
-threading
+beautifulsoup4
+openai
